@@ -72,10 +72,19 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     double eachPay = newAmount / pax;
+
                     tvTotalBill.setText("Total amount: $" + newAmount + "");
 
+                    int selectedId = paymentBtn.getCheckedRadioButtonId();
                     String msg = String.format("%.2f" , eachPay);
-                    tvEachPay.setText("Each pays: $" + msg + "");
+
+                    if (selectedId == R.id.cashBtn){
+                        tvEachPay.setText("Each pays: $" + msg + " in cash");
+                    } else {
+                        tvEachPay.setText("Each pays: $" + msg + " via PayNow to 92773648");
+                    }
+
+
                 }
             }
         });
@@ -84,7 +93,20 @@ public class MainActivity extends AppCompatActivity {
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (resetBtn)
+                //Reset enterAmount
+                enterAmount.setText(null);
+                enterAmount.dispatchDisplayHint(View.VISIBLE);
+
+                //Reset pax
+                numPax.setText(null);
+
+                //Reset discount
+                discount.setText(null);
+
+                //reset buttons
+                tbSvs.setChecked(false);
+                tbGst.setChecked(false);
+
             }
         });
 
